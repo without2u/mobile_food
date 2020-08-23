@@ -1,18 +1,18 @@
-# food
+Projet mobile
 
-> A native application built with NativeScript-Vue
+Groupe : Abdelwahed BENABBOU abdelwahed.benabbou@viacesi.fr
+
+Sujet selectionné : choix de fast-food
+
+Outils utilisé : NativeScript + vueJs
+
+Installation:
 
 ## Usage
 
 ``` bash
 # Install dependencies
 npm install
-
-# Preview on device
-tns preview
-
-# Build, watch for changes and run the application
-tns run
 
 # Build, watch for changes and debug the application
 tns debug <platform>
@@ -21,3 +21,23 @@ tns debug <platform>
 tns build <platform> --env.production
 
 ```
+
+Démarrage :
+
+``` bash
+# Preview on device
+tns preview
+
+# Build, watch for changes and run the application
+tns run
+```
+
+Problèmes rencontrés :
+ manque de documentations et d'exemple d'utilisations des composants .
+
+
+# food
+
+> A native application built with NativeScript-Vue
+
+
