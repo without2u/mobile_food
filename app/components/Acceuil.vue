@@ -1,18 +1,23 @@
 <template>
     <Page>
         <ActionBar class="ac"  title="Acceuil"/> 
-         <StackLayout backgroundColor="white">
-        <Button text="Ajouter un item" @tap="onTapCreate" height="70"/>
-        <Switch checked="true" class='filtre_style'/>
-        <ListView for="item in listeItems" @itemTap="showDetails" >
-            <v-template>
-                	<GridLayout  rows="*" columns="auto, *" :backgroundColor="getFoodStar" verticalAlignment="stretch">
-                        <Label class= "title_style" row="0" col="0" :text="item.title"  />
-						<Image class= "image_style" row="0" col="1" :src="'~/assets/images/'+item.image+'.png'" />
-					</GridLayout>
-            </v-template>
-        </ListView>
-         </StackLayout>
+            <StackLayout>
+            <Button text="Ajouter un item" @tap="onTapCreate" height="70" />
+            <StackLayout>
+                
+                <Switch :checked="this.filtreEtat" class='filtre_style' height="70" horizontalAlignment="right" @checkedChange="filtrerOk" />
+            </StackLayout>
+            <ListView for="item in listeItems" @itemTap="showDetails" class="liste_style">
+                <v-template >
+
+                        <GridLayout  rows="*" columns="auto, *" class="bloc_style" >
+                            <Label class= "title_style" row="0" col="0" :text="item.title"  />
+                            <Image class= "image_style" row="0" col="1" :src="'~/assets/images/'+item.image+'.png'" />
+                        </GridLayout>
+
+                </v-template>
+            </ListView>
+            </StackLayout >
     </Page>
 </template>
 <script >
@@ -25,6 +30,7 @@
 import DetailVue from './Detail'
 import dataFood from '../models/Data'
 import ItemF from '../models/ItemF'
+import listItems from '../models/Data';
 var dialogs = require("tns-core-modules/ui/dialogs");
   export default {
       components: {
@@ -35,11 +41,14 @@ var dialogs = require("tns-core-modules/ui/dialogs");
         msg: "page d'accueil",
         isActive: true,
         hasError: true,
+        filtreEtat : false,
+        newListeItems : [],
         listeItems:
             dataFood
       }
     },
     computed:{
+        
         getFoodStar(){
            
         this.listeItems.forEach(element => {
@@ -54,6 +63,21 @@ var dialogs = require("tns-core-modules/ui/dialogs");
     },
     methods:{
         //naviger vers la deuxieme page
+        filtrerOk(event){
+             console.log('okokokokokokokokokokokok')
+            console.log(event.value)
+            if(event.value == true){
+            dataFood.forEach(item => {
+                if(item.status == true){
+                    this.newListeItems.push(item)
+                }
+            })
+            this.listeItems = this.newListeItems
+            this.newListeItems = []
+            }else{
+                this.listeItems = dataFood
+            }
+        },
         showDetails(event){
 
             this.$navigateTo(DetailVue,{
@@ -120,10 +144,17 @@ var dialogs = require("tns-core-modules/ui/dialogs");
         vertical-align: center;
 
     }
-    .grid_style{
+    .grid_style {
         background-color: getFoodStar();
     }
-    .filtre_style{
-        text-align: right;
+    .filtre_style {
+       margin :10;
+    }
+
+    .liste_style {
+           height: 100%;
+    }
+    .bloc_style {
+        background-color: whitesmoke;
     }
 </style>
