@@ -6,6 +6,8 @@ Sujet selectionné : choix de fast-food
 
 Outils utilisé : NativeScript + vueJs
 
+lien de Demo : https://drive.google.com/file/d/1YhZeOdPRup_rRBAPnZBpDZFPipO7RKGE/view?usp=sharing
+
 Installation:
 
 ## Usage
